@@ -8,12 +8,21 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <>
-    <div className='h-[120vh] bg-gray-900'>
-      <div className='flex justify-center items-center '>
-          <h1 className='text-5xl text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text font-bold absolute top-[33%] left-[33%] translate-x-1/2 translate-y-1/2 tracking-wider'>Text Converter</h1>
-          <CapitalizeInput/>
+      <div className='max-h-screen h-screen pt-10 bg-gray-900'>
+
+        <h1 className=
+          {
+            `text-7xl text-transparent font-bold tracking-wider
+              bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text
+              max-w-full text-center pt-[30vh]`
+          }
+        >
+          Text Converter
+        </h1>
+
       </div>
-    </div>
+      <CapitalizeInput />
+
     </>
   )
 }
