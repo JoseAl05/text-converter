@@ -1,36 +1,54 @@
 'use client'
 
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const CapitalizeInput = () => {
 
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState([]);
     const [inputLength, setInputLength] = useState(0);
 
-    //Falta dinamizar el control del formato del input ingresado por el usuario.
-    //Por ej. Input:"Prueba de texto.  prueba de texto".
-    //El texto no se formateará, ya que hay 2 espacios despues del punto.
-    //Solo está validado si existe 1 solo espacio o si no existe espacio entre el punto y el inicio de otra oración.
-    const inputChange = (e) => {
 
-        //Se obtienen todas las palabras luego de un punto.
-        const arr = e.target.value.split('.');
-        console.log(arr);
-        for (let i = 0; i < arr.length; i++) {
-            //Se valida si el primer caracter de la palabra extraida despues de un punto, contiene un espacio.
-            if (arr[i].charAt(0) === " ") {
-                arr[i] = `${arr[i].charAt(1).toUpperCase()}${arr[i].slice(2)}`;
-            } else {
-                arr[i] = `${arr[i].charAt(0).toUpperCase()}${arr[i].slice(1)}`;
-            }
+    const checkGrammar = async(e) => {
+        e.preventDefault();
+        console.log(e.target.inputToChange.value);
+        try {
+            const res = await axios.get(`http://localhost:3000/api/grammar?text=${e.target.inputToChange.value}`);
+            console.log(res.data.response.errors);
+            setInputValue(res.data.response.errors);
+        } catch (error) {
+            console.error(error.message);
         }
-        setInputValue(arr.join(". "));
+
+        try {
+            const res = await axios.get(`http://localhost:3000/api/spelling?text=${e.target.inputToChange.value}`);
+            console.log(res.data);
+        } catch (error) {
+            console.error(error.message);
+        }
+
     }
+
+    const inputChange = (e) => {
+        const arr = e.target.value.split(' ');
+        console.log(arr);
+    }
+
+    const test = (e) => {
+        e.preventDefault();
+        console.log(e.target.textContent);
+    }
+
+    const test2 = (e) => {
+        e.preventDefault();
+        console.log(e.target.textContent);
+    }
+
 
 
     return (
         <>
-            <form className='bg-gray-800'>
+            <form onSubmit={checkGrammar} className='bg-gray-800 flex flex-col'>
                 <h1
                     className=
                         {`text-5xl text-center text-transparent font-bold tracking-wider
@@ -46,8 +64,30 @@ const CapitalizeInput = () => {
                         name='inputToChange'
                         onChange={inputChange}
                     ></textarea>
-                    <textarea className='rounded-xl p-5 bg-gray-400 h-[50vh] w-full max-w-xl mx-10' value={inputValue} disabled></textarea>
+                    <ul className=''>
+                        {inputValue.map((spellingErrors,index) => {
+                            return(
+                                <li key={index} className='p-5 text-lg'>
+                                    <span onClick={test} id='badSpelling' className='text-red-600 font-bold p-2'>
+                                        {spellingErrors.bad}
+                                    </span>
+                                    <span className='text-white p-2'>
+                                        {spellingErrors.description.en}
+                                    </span>
+                                    <span className='text-white font-bold'>¿Quiso decir?</span>
+                                    {spellingErrors.better.map((betterOptions,index)=>{
+                                        return(
+                                            <span onClick={test2} key={index} className='text-green-600 font-bold p-2'>
+                                                {betterOptions}
+                                            </span>
+                                        )
+                                    })}
+                                </li>
+                            )
+                        })}
+                    </ul>
                 </div>
+                <button type='submite' className='bg-green-800 p-2 w-full max-w-lg mx-auto mb-5 rounded-lg text-white font-bold text-xl'>Check!</button>
             </form>
         </>
     );
