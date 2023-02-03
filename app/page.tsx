@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import CapitalizeInput from './components/CapitalizeInput'
+import Grammar from './components/Grammar'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,8 +21,7 @@ export default function Home() {
         </h1>
 
       </div>
-      <CapitalizeInput />
-
+      <Grammar />
     </>
   )
 }
