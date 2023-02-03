@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import axios from 'axios';
 
 
@@ -17,11 +17,12 @@ const Grammar = () => {
     const [error, setError] = useState(null);
 
 
-    const checkGrammar = async (e) => {
+    const checkGrammar = async (e:any) => {
         e.preventDefault();
         setLoading(true);
+        const query = e.target ? e.target.inputToChange.value : null;
         try {
-            const res = await axios.get(`${URL}?text=${e.target.inputToChange.value}`);
+            const res = await axios.get(`${URL}?text=${query ? query : null}`);
 
             setInputValue(res.data.response.errors);
             setOriginalString(e.target.inputToChange.value);
@@ -30,14 +31,14 @@ const Grammar = () => {
             setReady(true);
             setLoading(false);
 
-        } catch (error) {
-            setError(error)
+        } catch (error:unknown) {
+            console.log(error);
             setLoading(false);
         }
 
     }
 
-    const inputChange = (e) => {
+    const inputChange = (e:any) => {
         const arr = e.target.value.split(' ');
         setOriginalString(e.target.value);
     }

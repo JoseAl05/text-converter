@@ -1,9 +1,14 @@
+import { Dispatch, SetStateAction } from 'react';
 import Checkmark from './Checkmark';
 import Loader from './Loader';
 
-const GrammarResults = ({originalString,setOriginalString,inputValue,ready,loading}) => {
+const GrammarResults = (
+    {originalString,setOriginalString,inputValue,ready,loading}
+    :
+    {originalString:string,setOriginalString:Dispatch<SetStateAction<string>>,inputValue:string[],ready:boolean,loading:boolean}
+    ) => {
 
-    const replaceBadWord = (e, badWord) => {
+    const replaceBadWord = (e:any, badWord:string) => {
         e.preventDefault();
         setOriginalString(originalString.replace(badWord, e.target.textContent));
     }
@@ -20,7 +25,7 @@ const GrammarResults = ({originalString,setOriginalString,inputValue,ready,loadi
                 (
                     inputValue.length !== 0 ?
                         (
-                            inputValue.map((spellingErrors, index) => {
+                            inputValue.map((spellingErrors:any, index) => {
                                 return (
                                     <li key={index} className='p-5 text-lg'>
                                         <span id='badSpelling' className='text-red-600 font-bold p-2'>
@@ -30,7 +35,7 @@ const GrammarResults = ({originalString,setOriginalString,inputValue,ready,loadi
                                             {spellingErrors.description.en}
                                         </span>
                                         <span className='text-white font-bold'>¿Quiso decir?</span>
-                                        {spellingErrors.better.map((betterOptions, index) => {
+                                        {spellingErrors.better.map((betterOptions:any, index:number) => {
                                             return (
                                                 <span
                                                     onClick={(e) => replaceBadWord(e, spellingErrors.bad)}
