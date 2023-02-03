@@ -24,7 +24,7 @@ const URL = "https://api.textgears.com";
 async function checkGrammar(req: NextApiRequest, res: NextApiResponse) {
 
     // const data = await axios.get(`${URL}/grammar?key=${TEXTGEARS_API_KEY}&text=${req.query.text}&language=es-ES`)
-    await axios.get(`${URL}/grammar?key=${TEXTGEARS_API_KEY}&text=${req.query.text}&language=es-ES`).then((data:any)=>{
+    await axios.get(`${URL}/grammar?key=${TEXTGEARS_API_KEY}&text=${req.query.text}&language=es-ES`,{withCredentials:true}).then((data:any)=>{
       console.log(data.data);
       res.status(200).json(data.data);
     }).catch(error=>{
