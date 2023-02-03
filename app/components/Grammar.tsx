@@ -24,7 +24,7 @@ const Grammar = () => {
         try {
             const res = await axios.get(`${URL}?text=${query ? query : null}`);
 
-            setInputValue(res.data.response.errors);
+            setInputValue(res.data ? res.data.response.errors : null);
             setOriginalString(e.target.inputToChange.value);
 
 
