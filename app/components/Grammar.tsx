@@ -23,7 +23,7 @@ const Grammar = () => {
         const query = e.target ? e.target.inputToChange.value : null;
 
         // const res = await axios.get(`${URL}?text=${query ? query : null}`);
-        await axios.get(`${URL}?text=${query ? query : null}`).then((res: any) => {
+        await axios.get(`${URL}?text=${query ? query : null}`,{withCredentials:true}).then((res: any) => {
             console.log(res);
             setInputValue(res.data ? res.data.response.errors : null);
             setOriginalString(e.target.inputToChange.value);
