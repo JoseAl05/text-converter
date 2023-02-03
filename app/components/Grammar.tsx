@@ -9,7 +9,7 @@ import Loader from './Loader';
 
 const Grammar = () => {
 
-    const URL = process.env.NODE_ENV === 'production' ? 'https://text-converter.vercel.app' : 'http://localhost:3000/api/grammar';
+    const URL = process.env.NODE_ENV === 'production' ? 'https://text-converter.vercel.app/api/grammar' : 'http://localhost:3000/api/grammar';
     const [inputValue, setInputValue] = useState([]);
     const [originalString, setOriginalString] = useState('');
     const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ const Grammar = () => {
 
         // const res = await axios.get(`${URL}?text=${query ? query : null}`);
         await axios.get(`${URL}?text=${query ? query : null}`).then((res: any) => {
-            console.log(res.data);
+            console.log(res);
             setInputValue(res.data ? res.data.response.errors : null);
             setOriginalString(e.target.inputToChange.value);
             setReady(true);
