@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, FormEvent } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 
 import GrammarResults from './GrammarResults';
@@ -17,28 +17,30 @@ const Grammar = () => {
     const [error, setError] = useState(null);
 
 
-    const checkGrammar = async (e:any) => {
+    const checkGrammar = async (e: any) => {
         e.preventDefault();
         setLoading(true);
         const query = e.target ? e.target.inputToChange.value : null;
-        try {
-            const res = await axios.get(`${URL}?text=${query ? query : null}`);
 
+        // const res = await axios.get(`${URL}?text=${query ? query : null}`);
+        await axios.get(`${URL}?text=${query ? query : null}`).then((res: AxiosResponse<any>) => {
             setInputValue(res.data ? res.data.response.errors : null);
             setOriginalString(e.target.inputToChange.value);
-
-
             setReady(true);
             setLoading(false);
+        }).catch(error => {
 
-        } catch (error:unknown) {
             console.log(error);
             setLoading(false);
-        }
+
+        })
+
+
+
 
     }
 
-    const inputChange = (e:any) => {
+    const inputChange = (e: any) => {
         const arr = e.target.value.split(' ');
         setOriginalString(e.target.value);
     }
@@ -112,7 +114,7 @@ const Grammar = () => {
                         value={originalString}
                         required
                     ></textarea>
-                    {loading ? <Loader/> : <></>}
+                    {loading ? <Loader /> : <></>}
                 </div>
                 <button
                     type='submit'
