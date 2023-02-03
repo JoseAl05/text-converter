@@ -47,7 +47,7 @@ const Grammar = () => {
     if (ready) {
         return (
             <>
-                <form onSubmit={checkGrammar} className='bg-gray-800 flex flex-col'>
+                <form onSubmit={checkGrammar} className='bg-gray-900 flex flex-col'>
                     <h1
                         className=
                         {`text-5xl text-center text-transparent font-bold tracking-wider
@@ -93,7 +93,7 @@ const Grammar = () => {
 
     return (
         <>
-            <form onSubmit={checkGrammar} className='bg-gray-800 flex flex-col'>
+            <form onSubmit={checkGrammar} className='bg-gray-900 flex flex-col'>
                 <h1
                     className=
                     {`text-5xl text-center text-transparent font-bold tracking-wider

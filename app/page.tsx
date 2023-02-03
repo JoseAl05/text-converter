@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Grammar from './components/Grammar'
+import HowUse from './components/HowUse'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,10 +18,11 @@ export default function Home() {
               max-w-full text-center pt-[30vh]`
           }
         >
-          Text Converter
+          Convertidor de Texto
         </h1>
 
       </div>
+      <HowUse/>
       <Grammar />
     </>
   )
