@@ -9,7 +9,7 @@ import Loader from './Loader';
 
 const Grammar = () => {
 
-    const URL = process.env.NODE_ENV === production ? 'https://text-converter-one.vercel.app' : 'http://localhost:3000/api/grammar';
+    const URL = process.env.NODE_ENV === 'production' ? 'https://text-converter-one.vercel.app' : 'http://localhost:3000/api/grammar';
     const [inputValue, setInputValue] = useState([]);
     const [originalString, setOriginalString] = useState('');
     const [loading, setLoading] = useState(false);
