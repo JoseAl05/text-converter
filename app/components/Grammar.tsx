@@ -6,12 +6,16 @@ import axios, { AxiosResponse } from 'axios';
 
 import GrammarResults from './GrammarResults';
 import Loader from './Loader';
+import Language from './Language';
 
 const Grammar = () => {
 
     const URL = process.env.NODE_ENV === 'production' ? 'https://text-converter-one.vercel.app/api/grammar' : 'http://localhost:3000/api/grammar';
+
     const [inputValue, setInputValue] = useState([]);
     const [originalString, setOriginalString] = useState('');
+    const [language,setLanguage] = useState('es-ES');
+
     const [loading, setLoading] = useState(false);
     const [ready, setReady] = useState(false);
     const [error, setError] = useState(null);
@@ -22,13 +26,14 @@ const Grammar = () => {
         setLoading(true);
         const query = e.target ? e.target.inputToChange.value : null;
 
-        // const res = await axios.get(`${URL}?text=${query ? query : null}`);
-        await axios.get(`${URL}?text=${query ? query : null}`,{withCredentials:true}).then((res: any) => {
-            console.log(res);
+        await axios.get(`${URL}?text=${query ? query : null}&lang=${language}`).then((res: any) => {
+
             setInputValue(res.data ? res.data.response.errors : null);
             setOriginalString(e.target.inputToChange.value);
+
             setReady(true);
             setLoading(false);
+
         }).catch(error => {
 
             console.log(error);
@@ -60,6 +65,7 @@ const Grammar = () => {
                     >
                         Formatea tu Texto!
                     </h1>
+                    <Language language={language} setLanguage={setLanguage}/>
                     <div className='flex justify-around items-center p-10'>
                         <textarea
                             className='h-[50vh] w-full p-5 rounded-xl max-w-2xl text-2xl'
@@ -106,6 +112,7 @@ const Grammar = () => {
                 >
                     Formatea tu Texto!
                 </h1>
+                <Language language={language} setLanguage={setLanguage}/>
                 <div className='flex justify-around items-center p-10'>
                     <textarea
                         className='h-[50vh] w-full p-5 rounded-xl max-w-2xl text-2xl'
