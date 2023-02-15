@@ -79,8 +79,8 @@ const Translate = () => {
                             required
                         ></textarea>
                         <TranslateResults
-                            textToTranslate={textToTranslate}
-                            setTextToTranslate={setTextToTranslate}
+                            textTranslated={textTranslated}
+                            setTextTranslated={setTextTranslated}
                             ready={ready}
                             loading={loading}
                         />
