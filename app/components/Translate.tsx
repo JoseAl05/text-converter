@@ -26,14 +26,11 @@ const Translate = () => {
         e.preventDefault();
         setLoading(true);
 
-        const query = e.target ? e.target.inputToChange.value : null;
-
-        await axios.get(`${URL}?language=${language ? language : null}&text=${query}`).then((res: any) => {
+        await axios.get(`${URL}?language=${language ? language : null}&text=${originalText ? originalText : null}`).then((res: any) => {
 
             res.data.choices.map((choices:any) => {
                 setTextTranslated(choices.text);
             })
-            setOriginalText(e.target.inputToChange.value);
             setReady(true);
             setLoading(false);
 
