@@ -30,7 +30,7 @@ const Translate = () => {
 
         await axios.get(`${URL}?language=${language ? language : null}&text=${query}`).then((res: any) => {
 
-            res.data.choices.map(choices => {
+            res.data.choices.map((choices:any) => {
                 setTextToTranslate(choices.text);
             })
             setReady(true);
