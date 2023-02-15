@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import Checkmark from "./Checkmark";
 import Loader from "./Loader";
 
