@@ -17,7 +17,7 @@ const TranslateResults = (
         <>
             {ready ?
                 (
-                    textToTranslate ?
+                    textTranslated ?
                         (
                             <textarea
                                 className='h-[50vh] w-full p-2 rounded-xl max-w-2xl text-2xl bg-gray-200'
