@@ -10,7 +10,7 @@ const Translate = () => {
 
     const URL = process.env.NODE_ENV === 'production' ? 'https://text-converter-one.vercel.app/api/translate' : 'http://localhost:3000/api/translate';
 
-    const [textToTranslate, setTextToTranslate] = useState('');
+    const [textTranslated, setTextTranslated] = useState('');
     const [originalText,setOriginalText] = useState('');
     const [language, setLanguage] = useState('English');
 
@@ -31,8 +31,9 @@ const Translate = () => {
         await axios.get(`${URL}?language=${language ? language : null}&text=${query}`).then((res: any) => {
 
             res.data.choices.map((choices:any) => {
-                setTextToTranslate(choices.text);
+                setTextTranslated(choices.text);
             })
+            setOriginalText(e.target.inputToChange.value);
             setReady(true);
             setLoading(false);
 
