@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Grammar from './components/Grammar'
 import HowUse from './components/HowUse'
+import Translate from './components/Translate'
 
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       </div>
       <HowUse />
       <Grammar />
+      <Translate />
     </>
   )
 }
