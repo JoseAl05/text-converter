@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, FormEvent } from 'react';
 import axios, { AxiosResponse } from 'axios';
+import { GrammarStatus } from '@/interfaces/GrammarStatus';
+import { Errors } from '@/interfaces/GrammarStatus';
 
 
 import GrammarResults from './GrammarResults';
@@ -12,7 +14,7 @@ const Grammar = () => {
 
     const URL = process.env.NODE_ENV === 'production' ? 'https://text-converter-one.vercel.app/api/grammar' : 'http://localhost:3000/api/grammar';
 
-    const [inputValue, setInputValue] = useState([]);
+    const [inputValue, setInputValue] = useState<Errors[]>([]);
     const [originalString, setOriginalString] = useState('');
     const [language,setLanguage] = useState('es-ES');
 
@@ -21,14 +23,20 @@ const Grammar = () => {
     const [error, setError] = useState(null);
 
 
-    const checkGrammar = async (e: any) => {
+    /*
+        Function form "onSubmit" that calls the api
+        Production URL  = https://text-converter-one.vercel.app/api/grammar
+        Dev URL = http://localhost:3000/api/grammar
+    */
+
+    const checkGrammar = async (e) => {
         e.preventDefault();
         setLoading(true);
         const query = e.target ? e.target.inputToChange.value : null;
 
-        await axios.get(`${URL}?text=${query ? query : null}&lang=${language}`).then((res: any) => {
+        await axios.get<GrammarStatus>(`${URL}?text=${query ? query : null}&lang=${language}`).then((res) => {
 
-            setInputValue(res.data ? res.data.response.errors : null);
+            setInputValue(res.data.response.errors);
             setOriginalString(e.target.inputToChange.value);
 
             setReady(true);
@@ -46,8 +54,8 @@ const Grammar = () => {
 
     }
 
-    const inputChange = (e: any) => {
-        const arr = e.target.value.split(' ');
+
+    const inputChange = (e) => {
         setOriginalString(e.target.value);
     }
 
