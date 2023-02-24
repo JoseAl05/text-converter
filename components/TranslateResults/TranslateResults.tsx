@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import Checkmark from "./Checkmark";
-import Loader from "./Loader";
+import Checkmark from "../Checkmark/Checkmark";
+import Loader from "../Loader/Loader";
 
 const TranslateResults = (
     { textTranslated, setTextTranslated, ready, loading }

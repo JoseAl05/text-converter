@@ -2,16 +2,16 @@
 
 import React, { useState, useEffect, FormEvent } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import Language from './Language';
-import TranslateResults from './TranslateResults';
-import Loader from './Loader';
+import Language from '../Language/Language';
+import TranslateResults from '../TranslateResults/TranslateResults';
+import Loader from '../Loader/Loader';
 
-const Translate = () => {
+const Translate = ({ activeTabId, setActiveTabId }) => {
 
     const URL = process.env.NODE_ENV === 'production' ? 'https://text-converter-one.vercel.app/api/translate' : 'http://localhost:3000/api/translate';
 
     const [textTranslated, setTextTranslated] = useState('');
-    const [originalText,setOriginalText] = useState('');
+    const [originalText, setOriginalText] = useState('');
     const [language, setLanguage] = useState('English');
 
     const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ const Translate = () => {
 
         await axios.get(`${URL}?language=${language ? language : null}&text=${originalText ? originalText : null}`).then((res: any) => {
 
-            res.data.choices.map((choices:any) => {
+            res.data.choices.map((choices: any) => {
                 setTextTranslated(choices.text);
             })
             setReady(true);
@@ -44,13 +44,20 @@ const Translate = () => {
 
     if (ready) {
         return (
-            <>
-                <form onSubmit={translateText} className='bg-gray-800 flex flex-col py-20'>
+            <div
+                id={`panel-${2}`}
+                role="tabpanel"
+                tabIndex={activeTabId === 2 ? "0" : "-1"}
+                aria-labelledby={`tab-${2}`}
+                aria-hidden={activeTabId !== 2}
+                hidden={activeTabId !== 2}
+            >
+                <form onSubmit={translateText} className='bg-gray-800 flex flex-col h-screen py-24'>
                     <h1
                         className=
                         {`text-5xl text-center text-transparent font-bold tracking-wider
                         bg-gradient-to-r from-purple-700 via-blue-500 to-green-500 bg-clip-text
-                        p-5`}
+                        p-5 sm:text-2xl`}
                     >
                         Traduce tu texto!
                     </h1>
@@ -94,13 +101,20 @@ const Translate = () => {
                         Traducir
                     </button>
                 </form>
-            </>
+            </div>
         )
     }
 
     return (
-        <>
-            <form onSubmit={translateText} className='bg-gray-800 flex flex-col py-20'>
+        <div
+            id={`panel-${2}`}
+            role="tabpanel"
+            tabIndex={activeTabId === 2 ? "0" : "-1"}
+            aria-labelledby={`tab-${2}`}
+            aria-hidden={activeTabId !== 2}
+            hidden={activeTabId !== 2}
+        >
+            <form onSubmit={translateText} className='bg-gray-900 flex flex-col h-screen py-24'>
                 <h1
                     className=
                     {`text-5xl text-center text-transparent font-bold tracking-wider
@@ -144,7 +158,7 @@ const Translate = () => {
                     Traducir
                 </button>
             </form>
-        </>
+        </div>
     );
 }
 

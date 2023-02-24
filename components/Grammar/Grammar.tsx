@@ -6,17 +6,17 @@ import { GrammarStatus } from '@/interfaces/GrammarStatus';
 import { Errors } from '@/interfaces/GrammarStatus';
 
 
-import GrammarResults from './GrammarResults';
-import Loader from './Loader';
-import Language from './Language';
+import GrammarResults from '../GrammarResults/GrammarResults';
+import Loader from '../Loader/Loader';
+import Language from '../Language/Language';
 
-const Grammar = () => {
+const Grammar = ({ activeTabId, setActiveTabId }) => {
 
     const URL = process.env.NODE_ENV === 'production' ? 'https://text-converter-one.vercel.app/api/grammar' : 'http://localhost:3000/api/grammar';
 
     const [inputValue, setInputValue] = useState<Errors[]>([]);
     const [originalString, setOriginalString] = useState('');
-    const [language,setLanguage] = useState('es-ES');
+    const [language, setLanguage] = useState('es-ES');
 
     const [loading, setLoading] = useState(false);
     const [ready, setReady] = useState(false);
@@ -63,8 +63,15 @@ const Grammar = () => {
 
     if (ready) {
         return (
-            <>
-                <form onSubmit={checkGrammar} className='bg-gray-900 flex flex-col py-20'>
+            <div
+                id={`panel-${1}`}
+                role="tabpanel"
+                tabIndex={activeTabId === 1 ? "0" : "-1"}
+                aria-labelledby={`tab-${1}`}
+                aria-hidden={activeTabId !== 1}
+                hidden={activeTabId !== 1}
+            >
+                <form onSubmit={checkGrammar} className='bg-gray-900 flex flex-col h-screen py-24'>
                     <h1
                         className=
                         {`text-5xl text-center text-transparent font-bold tracking-wider
@@ -73,7 +80,7 @@ const Grammar = () => {
                     >
                         Formatea tu Texto!
                     </h1>
-                    <Language language={language} setLanguage={setLanguage}/>
+                    <Language language={language} setLanguage={setLanguage} />
                     <div className='flex justify-around items-center p-10'>
                         <textarea
                             className='h-[50vh] w-full p-5 rounded-xl max-w-2xl text-2xl'
@@ -103,15 +110,22 @@ const Grammar = () => {
                         Buscar Errores
                     </button>
                 </form>
-            </>
+            </div>
         )
     }
 
 
 
     return (
-        <>
-            <form onSubmit={checkGrammar} className='bg-gray-900 flex flex-col py-20'>
+        <div
+            id={`panel-${1}`}
+            role="tabpanel"
+            tabIndex={activeTabId === 1 ? "0" : "-1"}
+            aria-labelledby={`tab-${1}`}
+            aria-hidden={activeTabId !== 1}
+            hidden={activeTabId !== 1}
+        >
+            <form onSubmit={checkGrammar} className='bg-gray-900 flex flex-col h-screen py-24'>
                 <h1
                     className=
                     {`text-5xl text-center text-transparent font-bold tracking-wider
@@ -120,7 +134,7 @@ const Grammar = () => {
                 >
                     Formatea tu Texto!
                 </h1>
-                <Language language={language} setLanguage={setLanguage}/>
+                <Language language={language} setLanguage={setLanguage} />
                 <div className='flex justify-around items-center p-10'>
                     <textarea
                         className='h-[50vh] w-full p-5 rounded-xl max-w-2xl text-2xl'
@@ -144,7 +158,7 @@ const Grammar = () => {
                     Buscar Errores
                 </button>
             </form>
-        </>
+        </div>
     );
 }
 
