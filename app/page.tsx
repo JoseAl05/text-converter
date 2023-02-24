@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import Grammar from './components/Grammar'
-import HowUse from './components/HowUse'
-import Translate from './components/Translate'
+import Grammar from '../components/Grammar/Grammar'
+import HowUse from '../components/HowUse/HowUse'
+import Translate from '../components/Translate/Translate'
+import Link from 'next/link'
 
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
       <div className="fixed top-12 w-full text-center p-4 text-lg text-red-600 bg-gray-800 " role="alert">
         <span className="font-medium">Aun falta mejorar el sitio. Esta versión es para probar el corrector de ortografía.</span>
       </div>
-      <div className='max-h-screen h-screen pt-10 bg-gray-900'>
+      <div className='max-h-screen h-screen pt-10 bg-gray-900 flex flex-col items-center'>
 
         <h1 className=
           {
@@ -25,6 +26,9 @@ export default function Home() {
         >
           Convertidor de Texto
         </h1>
+        <Link href='/tools' className='inline-block text-3xl text-white bg-blue-900 rounded-lg p-3 my-10'>
+          Probar
+        </Link>
       </div>
       <HowUse />
       <Grammar />
