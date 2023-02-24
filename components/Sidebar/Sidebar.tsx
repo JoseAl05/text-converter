@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
 
-const Sidebar = ({ activeTabId, setActiveTabId }) => {
+const Sidebar = ({ activeTabId, setActiveTabId }:{activeTabId:number,setActiveTabId:Dispatch<SetStateAction<number>>}) => {
     return (
         <>
             <div className="fixed top-0 left-0 bg-gray-800 z-40 w-full h-28 md:z-40 md:h-28 md:w-full lg:h-screen lg:w-72">
@@ -11,7 +12,7 @@ const Sidebar = ({ activeTabId, setActiveTabId }) => {
                                 id="tab-1"
                                 role="tab"
                                 onClick={() => setActiveTabId(1)}
-                                tabIndex={activeTabId === 1 ? "0" : "-1"}
+                                tabIndex={activeTabId === 1 ? 0 : -1}
                                 aria-selected={activeTabId === 1 ? true : false}
                                 aria-controls={`panel-${1}`}
                             >
@@ -23,7 +24,7 @@ const Sidebar = ({ activeTabId, setActiveTabId }) => {
                                 id="tab-2"
                                 role="tab"
                                 onClick={() => setActiveTabId(2)}
-                                tabIndex={activeTabId === 2 ? "0" : "-1"}
+                                tabIndex={activeTabId === 2 ? 0 : -1}
                                 aria-selected={activeTabId === 2 ? true : false}
                                 aria-controls={`panel-${2}`}
                             >

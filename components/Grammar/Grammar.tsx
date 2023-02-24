@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent, SetStateAction, Dispatch } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { GrammarStatus } from '@/interfaces/GrammarStatus';
 import { Errors } from '@/interfaces/GrammarStatus';
@@ -10,7 +10,7 @@ import GrammarResults from '../GrammarResults/GrammarResults';
 import Loader from '../Loader/Loader';
 import Language from '../Language/Language';
 
-const Grammar = ({ activeTabId, setActiveTabId }) => {
+const Grammar = ({ activeTabId, setActiveTabId }:{activeTabId:number,setActiveTabId:Dispatch<SetStateAction<number>>}) => {
 
     const URL = process.env.NODE_ENV === 'production' ? 'https://text-converter-one.vercel.app/api/grammar' : 'http://localhost:3000/api/grammar';
 
@@ -66,7 +66,7 @@ const Grammar = ({ activeTabId, setActiveTabId }) => {
             <div
                 id={`panel-${1}`}
                 role="tabpanel"
-                tabIndex={activeTabId === 1 ? "0" : "-1"}
+                tabIndex={activeTabId === 1 ? 0 : -1}
                 aria-labelledby={`tab-${1}`}
                 aria-hidden={activeTabId !== 1}
                 hidden={activeTabId !== 1}
@@ -120,7 +120,7 @@ const Grammar = ({ activeTabId, setActiveTabId }) => {
         <div
             id={`panel-${1}`}
             role="tabpanel"
-            tabIndex={activeTabId === 1 ? "0" : "-1"}
+            tabIndex={activeTabId === 1 ? 0 : -1}
             aria-labelledby={`tab-${1}`}
             aria-hidden={activeTabId !== 1}
             hidden={activeTabId !== 1}

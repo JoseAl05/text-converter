@@ -31,8 +31,6 @@ export default function Home() {
         </Link>
       </div>
       <HowUse />
-      <Grammar />
-      <Translate />
     </>
   )
 }

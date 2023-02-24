@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent, SetStateAction, Dispatch } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import Language from '../Language/Language';
 import TranslateResults from '../TranslateResults/TranslateResults';
 import Loader from '../Loader/Loader';
 
-const Translate = ({ activeTabId, setActiveTabId }) => {
+const Translate = ({ activeTabId, setActiveTabId }:{activeTabId:number,setActiveTabId:Dispatch<SetStateAction<number>>}) => {
 
     const URL = process.env.NODE_ENV === 'production' ? 'https://text-converter-one.vercel.app/api/translate' : 'http://localhost:3000/api/translate';
 
@@ -47,7 +47,7 @@ const Translate = ({ activeTabId, setActiveTabId }) => {
             <div
                 id={`panel-${2}`}
                 role="tabpanel"
-                tabIndex={activeTabId === 2 ? "0" : "-1"}
+                tabIndex={activeTabId === 2 ? 0 : -1}
                 aria-labelledby={`tab-${2}`}
                 aria-hidden={activeTabId !== 2}
                 hidden={activeTabId !== 2}
@@ -109,7 +109,7 @@ const Translate = ({ activeTabId, setActiveTabId }) => {
         <div
             id={`panel-${2}`}
             role="tabpanel"
-            tabIndex={activeTabId === 2 ? "0" : "-1"}
+            tabIndex={activeTabId === 2 ? 0 : -1}
             aria-labelledby={`tab-${2}`}
             aria-hidden={activeTabId !== 2}
             hidden={activeTabId !== 2}
