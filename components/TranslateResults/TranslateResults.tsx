@@ -20,7 +20,7 @@ const TranslateResults = (
                     textTranslated ?
                         (
                             <textarea
-                                className='h-[50vh] w-full p-2 rounded-xl max-w-2xl text-2xl bg-gray-200'
+                                className='h-[25vh] md:h-[30vh] lg:h-[50vh] w-[20rem] md:w-[35rem] lg:w-[40rem] p-2 lg:ml-5 rounded-xl max-w-2xl text-base md:text-lg lg:text-2xl bg-gray-200'
                                 id='inputToChange'
                                 name='inputToChange'
                                 value={textTranslated}

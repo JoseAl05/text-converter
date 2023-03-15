@@ -9,10 +9,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <>
-      <div className="fixed w-full text-center p-4 text-2xl text-red-600 bg-gray-800 " role="alert">
-        <span className="font-medium">El diseño no es responsive aún.</span> Para mejor experiencia, no utilize celular o tablet.
-      </div>
-      <div className="fixed top-12 w-full text-center p-4 text-lg text-red-600 bg-gray-800 " role="alert">
+      <div className="fixed top-0 w-full text-center p-2 text-lg text-red-600 bg-gray-800 " role="alert">
         <span className="font-medium">Aun falta mejorar el sitio. Esta versión es para probar el corrector de ortografía.</span>
       </div>
       <div className='max-h-screen h-screen pt-10 bg-gray-900 flex flex-col items-center'>

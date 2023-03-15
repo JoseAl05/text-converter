@@ -70,8 +70,9 @@ const Grammar = ({ activeTabId, setActiveTabId }:{activeTabId:number,setActiveTa
                 aria-labelledby={`tab-${1}`}
                 aria-hidden={activeTabId !== 1}
                 hidden={activeTabId !== 1}
+                className='w-full'
             >
-                <form onSubmit={checkGrammar} className='bg-gray-900 flex flex-col h-screen py-24'>
+                <form onSubmit={checkGrammar} className='bg-gray-900 flex flex-col items-center h-screen py-32'>
                     <h1
                         className=
                         {`text-5xl text-center text-transparent font-bold tracking-wider
@@ -81,9 +82,9 @@ const Grammar = ({ activeTabId, setActiveTabId }:{activeTabId:number,setActiveTa
                         Formatea tu Texto!
                     </h1>
                     <Language language={language} setLanguage={setLanguage} />
-                    <div className='flex justify-around items-center p-10'>
+                    <div className='flex flex-col md:flex md:flex-col lg:flex-row lg:justify-around items-center py-10'>
                         <textarea
-                            className='h-[50vh] w-full p-5 rounded-xl max-w-2xl text-2xl'
+                            className='h-[25vh] md:h-[30vh] lg:h-[50vh] w-[25rem] md:w-[35rem] lg:w-[40rem] p-5 rounded-xl lg:max-w-2xl text-base md:text-lg lg:text-2xl'
                             id='inputToChange'
                             name='inputToChange'
                             onChange={inputChange}
@@ -101,10 +102,10 @@ const Grammar = ({ activeTabId, setActiveTabId }:{activeTabId:number,setActiveTa
                     <button
                         type='submit'
                         className=
-                        {`bg-green-800 p-2 w-full max-w-lg mx-auto mb-5
-                            rounded-lg text-white font-bold text-2xl
-                            transition-all ease-in-out duration-150
-                            hover:scale-105`
+                        {`bg-green-800 p-2 w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto mb-5
+                        rounded-lg text-white font-bold text-base md:text-lg lg:text-2xl
+                        transition-all ease-in-out duration-150
+                        lg:hover:scale-105`
                         }
                     >
                         Buscar Errores
@@ -124,8 +125,9 @@ const Grammar = ({ activeTabId, setActiveTabId }:{activeTabId:number,setActiveTa
             aria-labelledby={`tab-${1}`}
             aria-hidden={activeTabId !== 1}
             hidden={activeTabId !== 1}
+            className='w-full'
         >
-            <form onSubmit={checkGrammar} className='bg-gray-900 flex flex-col h-screen py-24'>
+            <form onSubmit={checkGrammar} className='bg-gray-900 flex flex-col h-screen py-32'>
                 <h1
                     className=
                     {`text-5xl text-center text-transparent font-bold tracking-wider
@@ -135,9 +137,9 @@ const Grammar = ({ activeTabId, setActiveTabId }:{activeTabId:number,setActiveTa
                     Formatea tu Texto!
                 </h1>
                 <Language language={language} setLanguage={setLanguage} />
-                <div className='flex justify-around items-center p-10'>
+                <div className='flex flex-col md:flex md:flex-col lg:flex-row lg:justify-around items-center py-10'>
                     <textarea
-                        className='h-[50vh] w-full p-5 rounded-xl max-w-2xl text-2xl'
+                        className='h-[25vh] md:h-[30vh] lg:h-[50vh] w-[25rem] md:w-[35rem] lg:w-[40rem] p-5 rounded-xl max-w-2xl text-2xl'
                         id='inputToChange'
                         name='inputToChange'
                         onChange={inputChange}
@@ -149,10 +151,10 @@ const Grammar = ({ activeTabId, setActiveTabId }:{activeTabId:number,setActiveTa
                 <button
                     type='submit'
                     className=
-                    {`bg-green-800 p-2 w-full max-w-lg mx-auto mb-5
-                        rounded-lg text-white font-bold text-2xl
-                        transition-all ease-in-out duration-150
-                        hover:scale-105`
+                    {`bg-green-800 p-2 w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto mb-5
+                    rounded-lg text-white font-bold text-base md:text-lg lg:text-2xl
+                    transition-all ease-in-out duration-150
+                    lg:hover:scale-105`
                     }
                 >
                     Buscar Errores

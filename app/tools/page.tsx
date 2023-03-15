@@ -11,9 +11,10 @@ const Page = () => {
 
     return (
         <>
-            <Sidebar activeTabId={activeTabId} setActiveTabId={setActiveTabId} />
-            <Grammar activeTabId={activeTabId} setActiveTabId={setActiveTabId} />
-            <Translate activeTabId={activeTabId} setActiveTabId={setActiveTabId}/>
+            <Sidebar activeTabId={activeTabId} setActiveTabId={setActiveTabId} >
+                <Grammar activeTabId={activeTabId} setActiveTabId={setActiveTabId} />
+                <Translate activeTabId={activeTabId} setActiveTabId={setActiveTabId}/>
+            </Sidebar>
         </>
     );
 }
